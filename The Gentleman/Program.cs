@@ -1,42 +1,28 @@
-﻿// Spelplanens storlek
-int bredd = 30;
-int hojd = 10;
+﻿using System.Text;
+using TheGentleman.Core;
+using TheGentleman.UI;
 
-// Karaktärens startplats
-int x = 5;
-int y = 5;
+// The Gentleman: ett turbaserat smygspel i terminalen.
+// Programmet startar bara menyn. All logik finns i mapparna Models, Core, UI och Data.
 
+if (Console.IsInputRedirected)
+{
+    Console.WriteLine("The Gentleman måste köras i en riktig terminal (t.ex. 'dotnet run').");
+    return;
+}
+
+Console.OutputEncoding = Encoding.UTF8;
 Console.CursorVisible = false;
 
-while (true)
+try
 {
-    // 1. RITA
+    var menu = new Menu(new Renderer(), new HighscoreManager());
+    menu.Run();
+}
+finally
+{
+    // Återställ terminalen även om något går fel.
+    Console.ResetColor();
+    Console.CursorVisible = true;
     Console.Clear();
-    Console.WriteLine("+" + new string('-', bredd) + "+");
-
-    for (int rad = 0; rad < hojd; rad++)
-    {
-        Console.Write("|");
-        for (int kolumn = 0; kolumn < bredd; kolumn++)
-        {
-            if (kolumn == x && rad == y)
-                Console.Write("@");
-            else
-                Console.Write(" ");
-        }
-        Console.WriteLine("|");
-    }
-
-    Console.WriteLine("+" + new string('-', bredd) + "+");
-    Console.WriteLine("Piltangenter = gå, Esc = avsluta");
-
-    // 2. LYSSNA
-    var knapp = Console.ReadKey(true).Key;
-
-    // 3. UPPDATERA
-    if (knapp == ConsoleKey.Escape) break;
-    if (knapp == ConsoleKey.UpArrow && y > 0) y--;
-    if (knapp == ConsoleKey.DownArrow && y < hojd - 1) y++;
-    if (knapp == ConsoleKey.LeftArrow && x > 0) x--;
-    if (knapp == ConsoleKey.RightArrow && x < bredd - 1) x++;
 }
