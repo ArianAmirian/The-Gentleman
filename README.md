@@ -1,5 +1,14 @@
 # The Gentleman
 
+Det här repot innehåller två versioner av spelet:
+
+- **[The Gentleman 2D](The%20Gentleman%202D/README.md)** är den grafiska versionen med Raylib: en stad med dag och natt, kameror, polis, tillverkning, kunder och ett gömställe att bygga ut.
+- **The Gentleman (terminal)**, nedan, är det ursprungliga turbaserade smygspelet i terminalen.
+
+---
+
+## Terminalversionen
+
 Ett turbaserat smygspel i terminalen, skrivet i C# (.NET 10).
 
 Du är The Gentleman (`@`), en mästertjuv. På fem banor ska du ta diamanten (`$`) och ta dig ut genom utgången (`E`) utan att vakterna ser dig.
